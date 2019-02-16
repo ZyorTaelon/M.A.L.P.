@@ -1,5 +1,5 @@
 function loadPackages()
-  tcp = require('tcp');
+  connection = require('tcp');
   commandMap = require('commandMap');
   dta = require('doToArea');
   int = require('interact');
@@ -9,6 +9,8 @@ function loadPackages()
 end
 loadPackages();
 
+local thread = require("thread");
+local event = require("event");
 local scanDirection = require('scanDirection');
 local orient = require('trackOrientation');
 local mas = require('moveAndScan');
@@ -36,26 +38,35 @@ end
 
 -- wait until a command exists, grab it, execute it, and send result back
 function executeCommand()
-  local data = tcp.read();
+  local data = connection.read();
   local result = commandMap[data['name']](unpack(data['parameters']));
-  tcp.write({['command result']={data['name'], result}});
-  tcp.write({['power level']=computer.energy()/computer.maxEnergy()});
+  connection.write({['command result']={data['name'], result}});
+  connection.write({['power level']=computer.energy()/computer.maxEnergy()});
 end
 
 continueLoop = true;
-while continueLoop do
-  local success, message = pcall(executeCommand);
-  if not success then
-    print(message);
-    tcp.close();
-    -- unloading 'computer' breaks stuff, it can't be required again for some reason
-    local loadedPackages = {'tcp', 'trackPosition', 'sendScan', 'doToArea', 'commandMap'};
-    for index, p in pairs(loadedPackages) do
-      package.loaded[p] = nil;
+
+local cleanup_thread = thread.create(function()
+  event.pull("interrupted")
+  continueLoop = false
+  print("Interrupt received. Exiting")
+end)
+
+local main_thread = thread.create(function()
+  while continueLoop do
+    local success, message = pcall(executeCommand);
+    if not success then
+      print(message);
+      connection.close();
+      -- unloading 'computer' breaks stuff, it can't be required again for some reason
+      local loadedPackages = {'tcp', 'trackPosition', 'sendScan', 'doToArea', 'commandMap'};
+      for index, p in pairs(loadedPackages) do
+        package.loaded[p] = nil;
+      end
+      -- wait for server to come back up
+      os.sleep(5);
+      -- reconnect to server
+      loadPackages();
     end
-    -- wait for server to come back up
-    os.sleep(5);
-    -- reconnect to server
-    loadPackages();
   end
-end
+end)
