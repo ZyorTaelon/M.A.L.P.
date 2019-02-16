@@ -1,6 +1,6 @@
 local adj = require('adjacent');
 local robot = require('robot');
-tcp = require('tcp'); -- if this is local, reloading modules fails in commandLoop
+tcp = require('tunnel'); -- if this is local, reloading modules fails in commandLoop
 local pos = require('trackPosition');
 local component = require('component');
 if not component.isAvailable('geolyzer') then

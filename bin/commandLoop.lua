@@ -1,5 +1,5 @@
 function loadPackages()
-  connection = require('tcp');
+  connection = require('tunnel');
   commandMap = require('commandMap');
   dta = require('doToArea');
   int = require('interact');
@@ -59,7 +59,7 @@ local main_thread = thread.create(function()
       print(message);
       connection.close();
       -- unloading 'computer' breaks stuff, it can't be required again for some reason
-      local loadedPackages = {'tcp', 'trackPosition', 'sendScan', 'doToArea', 'commandMap'};
+      local loadedPackages = {'tunnel', 'trackPosition', 'sendScan', 'doToArea', 'commandMap'};
       for index, p in pairs(loadedPackages) do
         package.loaded[p] = nil;
       end

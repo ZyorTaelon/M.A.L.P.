@@ -1,6 +1,6 @@
 local os = require('os');
 
-local url = os.getenv('ROBOSERVER_CODE') .. '/';
+local url = os.getenv('SERVER_LOCATION') .. '/';
 local filenames = {
   'commandLoop.lua',
   'commandMap.lua',
@@ -8,6 +8,7 @@ local filenames = {
   'scanDirection.lua',
   'sendScan.lua',
   'tcp.lua',
+  'tunnel.lua',
   'trackPosition.lua',
   'trackOrientation.lua',
   'moveAndScan.lua',

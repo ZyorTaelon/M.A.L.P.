@@ -3,7 +3,7 @@ if not component.isAvailable("geolyzer") then
   error("Geolyzer not found");
 end
 local geolyzer = component.geolyzer;
-tcp = require('tcp'); -- if this is local, reloading modules fails in commandLoop
+tcp = require('tunnel'); -- if this is local, reloading modules fails in commandLoop
 local pos = require('trackPosition');
 
 local M = {};
