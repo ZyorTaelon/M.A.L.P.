@@ -1,4 +1,5 @@
-local tunnel = require('tunnel');
+local component = require("component")
+local tunnel = component.tunnel;
 local event = require("event")
 local JSON = require("json");
 local config = require('config');
