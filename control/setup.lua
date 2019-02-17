@@ -9,8 +9,6 @@ if not filesystem.exists('/home/lib') then
   filesystem.makeDirectory('/home/lib')
 end
   
-local command = 'wget -f ' .. codeURL .. '/control' .. fileName .. ' ' .. '/home/lib' .. fileName
-print("executing command: '" .. command .. "'")
-os.execute(command);
+os.execute('wget -f ' .. codeURL .. '/control' .. fileName .. ' ' .. '/home/lib' .. fileName);
 local dl = require("downloadCode");
 dl.downloadAll();

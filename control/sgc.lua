@@ -8,6 +8,8 @@ local char_s = string.byte("s") -- numerical representation of the s char
 local char_d = string.byte("d") -- numerical representation of the d char
 local char_j = string.byte("j") -- numerical representation of the j char
 local char_l = string.byte("l") -- numerical representation of the l char
+local char_i = string.byte("i") -- numerical representation of the i char
+local char_k = string.byte("k") -- numerical representation of the k char
 local running = true -- state variable so the loop can terminate
  
 function unknownEvent()
@@ -34,6 +36,10 @@ function myEventHandlers.key_up(adress, char, code, playerName)
     print("j")
   elseif (char == char_l) then
     print("l")
+  elseif (char == char_i) then
+    print("i")
+  elseif (char == char_k) then
+    print("k")
   else
     print("key pressed: " .. char)
   end

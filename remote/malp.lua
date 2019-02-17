@@ -14,9 +14,11 @@ end
 
 function executeCommand()
   local data = connection.read();
-  local result = commandMap[data['name']](unpack(data['parameters']));
-  connection.write({['command result']={data['name'], result}});
-  connection.write({['power level']=computer.energy()/computer.maxEnergy()});
+  if data["command"] == "turnLeft" then
+    turnLeft();
+  end
+--  connection.write({['command result']={data['name'], result}});
+--  connection.write({['power level']=computer.energy()/computer.maxEnergy()});
 end
 
 
@@ -35,14 +37,6 @@ local main_thread = thread.create(function()
     if not success then
       print(message);
       connection.close();
-      -- unloading 'computer' breaks stuff, it can't be required again for some reason
-      local loadedPackages = {'tunnel', 'trackPosition', 'sendScan', 'doToArea', 'commandMap'};
-      for index, p in pairs(loadedPackages) do
-        package.loaded[p] = nil;
-      end
-      -- wait for server to come back up
-      os.sleep(5);
-      -- reconnect to server
       loadPackages();
     end
   end
