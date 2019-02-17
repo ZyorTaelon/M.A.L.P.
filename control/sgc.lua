@@ -30,6 +30,10 @@ function myEventHandlers.key_up(adress, char, code, playerName)
     print("s")
   elseif (char == char_d) then
     print("d")
+  elseif (char == char_j) then
+    print("j")
+  elseif (char == char_l) then
+    print("l")
   else
     print("key pressed: " .. char)
   end
