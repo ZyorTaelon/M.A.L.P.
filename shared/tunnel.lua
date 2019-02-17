@@ -2,12 +2,6 @@ local component = require("component")
 local tunnel = component.tunnel;
 local event = require("event")
 local JSON = require("json");
-local config = require('config');
-local conf = config.get(config.path);
-
--- local handle = internet.open(conf.serverIP, tonumber(conf.tcpPort));
--- handle:setvbuf('line');
--- handle:setTimeout('10');
 
 local delimiter = '\n';
 
@@ -35,7 +29,5 @@ end
 function M.close()
   return true;
 end
-
-M.write({id={account=conf.accountName, robot=conf.robotName}});
 
 return M;

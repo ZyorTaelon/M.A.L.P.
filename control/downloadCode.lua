@@ -2,22 +2,8 @@ local os = require('os');
 
 local url = os.getenv('SERVER_LOCATION') .. '/';
 local filenames = {
-  'commandLoop.lua',
-  'commandMap.lua',
-  'json.lua',
-  'scanDirection.lua',
-  'sendScan.lua',
-  'tcp.lua',
-  'tunnel.lua',
-  'trackPosition.lua',
-  'trackOrientation.lua',
-  'moveAndScan.lua',
-  'adjacent.lua',
-  'doToArea.lua',
-  'interact.lua',
-  'craft.lua',
-  'config.lua',
-  'config.txt',
+  'sgc.lua',
+  'shared/tunnel'
 };
 
 local M = {};
