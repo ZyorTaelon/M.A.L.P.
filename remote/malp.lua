@@ -2,6 +2,7 @@ local component = require("component")
 local robot = component.robot
 local tunnel = component.tunnel;
 local event = require("event")
+local thread = require("thread")
 connection = require('tunnel');
 
 function turnLeft()
