@@ -1,6 +1,10 @@
 local event = require "event" -- load event table and store the pointer to it in event
  
 local char_space = string.byte(" ") -- numerical representation of the space char
+local char_w = string.byte("w") -- numerical representation of the space char
+local char_a = string.byte("a") -- numerical representation of the space char
+local char_s = string.byte("s") -- numerical representation of the space char
+local char_d = string.byte("d") -- numerical representation of the space char
 local running = true -- state variable so the loop can terminate
  
 function unknownEvent()
@@ -15,6 +19,14 @@ local myEventHandlers = setmetatable({}, { __index = function() return unknownEv
 function myEventHandlers.key_up(adress, char, code, playerName)
   if (char == char_space) then
     running = false
+  elseif (char == char_w) then
+    print("w")
+  elseif (char == char_a) then
+    print("a")
+  elseif (char == char_s) then
+    print("s")
+  elseif (char == char_d) then
+    print("d")
   else
     print("key pressed: " .. char)
   end
