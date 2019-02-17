@@ -1,5 +1,6 @@
 local event = require("event") -- load event table and store the pointer to it in event
 local thread = require("thread")
+local movement = require("movement")
  
 local char_space = string.byte(" ") -- numerical representation of the space char
 local char_w = string.byte("w") -- numerical representation of the w char
@@ -33,7 +34,7 @@ function myEventHandlers.key_up(adress, char, code, playerName)
   elseif (char == char_d) then
     print("d")
   elseif (char == char_j) then
-    print("j")
+    movement.turnLeft()
   elseif (char == char_l) then
     print("l")
   elseif (char == char_i) then
