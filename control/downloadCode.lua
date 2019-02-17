@@ -1,13 +1,14 @@
 local os = require('os');
 local url = os.getenv('SERVER_LOCATION') .. '/';
 local filenames = {}
-filenames["sgc.lua"] = "sgc.lua"
+filenames["control/sgc.lua"] = "sgc.lua"
 filenames["shared/tunnel.lua"] = "lib/tunnel.lua"
 
 local M = {};
 
 function M.downloadAll()
-  for src, dest in ipairs(filenames) do
+  print("Starting file downloads...")
+  for src, dest in pairs(filenames) do
     print("src: " .. src)
     print("dest: " .. dest)
     M.download(src, dest);
