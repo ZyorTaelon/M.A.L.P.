@@ -14,6 +14,14 @@ function turnRight()
   robot.turn(true)
 end
 
+function moveUp()
+  robot.up()
+end
+
+function moveDown()
+  robot.down()
+end
+
 function executeCommand()
   local data = connection.read();
   print("received command: " .. data["command"])
@@ -23,6 +31,12 @@ function executeCommand()
     return true
   elseif cmd == "turnRight" then
     turnRight()
+    return true
+  elseif cmd == "moveUp" then
+    moveUp()
+    return true
+  elseif cmd == "moveDown" then
+    moveDown()
     return true
   end
 --  connection.write({['command result']={data['name'], result}});

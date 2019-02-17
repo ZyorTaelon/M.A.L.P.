@@ -36,11 +36,11 @@ function myEventHandlers.key_up(adress, char, code, playerName)
   elseif (char == char_j) then
     movement.turnLeft()
   elseif (char == char_l) then
-    print("l")
+    movement.turnRight()
   elseif (char == char_i) then
-    print("i")
+    movement.moveUp()
   elseif (char == char_k) then
-    print("k")
+    movement.moveDown()
   else
     print("key pressed: " .. char)
   end
