@@ -1,10 +1,12 @@
-local event = require "event" -- load event table and store the pointer to it in event
+local event = require("event") -- load event table and store the pointer to it in event
  
 local char_space = string.byte(" ") -- numerical representation of the space char
-local char_w = string.byte("w") -- numerical representation of the space char
-local char_a = string.byte("a") -- numerical representation of the space char
-local char_s = string.byte("s") -- numerical representation of the space char
-local char_d = string.byte("d") -- numerical representation of the space char
+local char_w = string.byte("w") -- numerical representation of the w char
+local char_a = string.byte("a") -- numerical representation of the a char
+local char_s = string.byte("s") -- numerical representation of the s char
+local char_d = string.byte("d") -- numerical representation of the d char
+local char_j = string.byte("j") -- numerical representation of the j char
+local char_l = string.byte("l") -- numerical representation of the l char
 local running = true -- state variable so the loop can terminate
  
 function unknownEvent()
@@ -38,8 +40,16 @@ function handleEvent(eventID, ...)
     myEventHandlers[eventID](...) -- call the appropriate event handler with all remaining arguments
   end
 end
- 
+
+local cleanup_thread = thread.create(function()
+  event.pull("interrupted")
+  running = false
+  print("Interrupt received. Exiting")
+end)
+
 -- main event loop which processes all events, or sleeps if there is nothing to do
-while running do
-  handleEvent(event.pull()) -- sleeps until an event is available, then process it
-end
+local main_thread = thread.create(function()
+  while running do
+    handleEvent(event.pull()) -- sleeps until an event is available, then process it
+  end
+end)
