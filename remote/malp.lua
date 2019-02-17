@@ -7,19 +7,23 @@ connection = require('tunnel');
 
 function turnLeft()
   print("Telling robot to turn left...")
-  robot.turnLeft();
+  robot.turn(false);
 end
 
 function turnRight()
-  robot.turnRight()
+  robot.turn(true)
 end
 
 function executeCommand()
   local data = connection.read();
   print("received command: " .. data["command"])
-  if data["command"] == "turnLeft" then
-    turnLeft();
-    return true;
+  local cmd = data["command"]
+  if cmd == "turnLeft" then
+    turnLeft()
+    return true
+  elseif cmd == "turnRight" then
+    turnRight()
+    return true
   end
 --  connection.write({['command result']={data['name'], result}});
 --  connection.write({['power level']=computer.energy()/computer.maxEnergy()});
