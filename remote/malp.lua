@@ -1,5 +1,5 @@
 local component = require("component")
-local robot = component.robot
+local robot = require("robot")
 local tunnel = component.tunnel;
 local event = require("event")
 local thread = require("thread")
@@ -7,11 +7,11 @@ connection = require('tunnel');
 
 function turnLeft()
   print("Telling robot to turn left...")
-  return robot.turn(false);
+  return robot.turnLeft();
 end
 
 function turnRight()
-  return robot.turn(true)
+  return robot.turnRight()
 end
 
 function moveUp()
