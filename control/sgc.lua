@@ -1,4 +1,5 @@
 local event = require("event") -- load event table and store the pointer to it in event
+local thread = require("thread")
  
 local char_space = string.byte(" ") -- numerical representation of the space char
 local char_w = string.byte("w") -- numerical representation of the w char
