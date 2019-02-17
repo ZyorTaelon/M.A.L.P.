@@ -1,3 +1,4 @@
+-- install this file with: wget -f 'https://raw.githubusercontent.com/ZyorTaelon/M.A.L.P./master/control/setup.lua'
 local os = require('os');
 local filesystem = require("filesystem")
 os.setenv('SERVER_LOCATION', 'https://raw.githubusercontent.com/ZyorTaelon/M.A.L.P./master')
@@ -8,7 +9,7 @@ if not filesystem.exists('/home/lib') then
   filesystem.makeDirectory('/home/lib')
 end
   
-local command = 'wget -f ' .. codeURL .. fileName .. ' ' .. '/home/lib' .. fileName
+local command = 'wget -f ' .. codeURL .. '/control' .. fileName .. ' ' .. '/home/lib' .. fileName
 print("executing command: '" .. command .. "'")
 os.execute(command);
 local dl = require("downloadCode");
