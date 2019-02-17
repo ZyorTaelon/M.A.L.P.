@@ -15,8 +15,10 @@ end
 
 function executeCommand()
   local data = connection.read();
+  print("received command: " .. data["command"])
   if data["command"] == "turnLeft" then
     turnLeft();
+    return true;
   end
 --  connection.write({['command result']={data['name'], result}});
 --  connection.write({['power level']=computer.energy()/computer.maxEnergy()});
@@ -37,8 +39,6 @@ local main_thread = thread.create(function()
     local success, message = executeCommand() -- pcall(executeCommand);
     if not success then
       print(message);
-      connection.close();
-      loadPackages();
     end
   end
 end)
