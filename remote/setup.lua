@@ -1,4 +1,4 @@
-local path = '/home/remote';
+local path = '/home/lib';
 local os = require('os');
 os.setenv('SERVER_LOCATION', 'https://raw.githubusercontent.com/ZyorTaelon/M.A.L.P./master/remote')
 local codeURL = os.getenv('SERVER_LOCATION');
