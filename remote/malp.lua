@@ -6,6 +6,7 @@ local thread = require("thread")
 connection = require('tunnel');
 
 function turnLeft()
+  print("Telling robot to turn left...")
   robot.turnLeft();
 end
 
