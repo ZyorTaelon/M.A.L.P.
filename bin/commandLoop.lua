@@ -19,7 +19,7 @@ local adj = require('adjacent');
 local craft = require('craft');
 local computer = require('computer');
 local config = require('config');
-local raw = config.get(config.path).components.raw;
+local raw = "true";
 local rawBool = (raw == "true" or raw == true) and true or false;
 
 function runInTerminal(commandText)
@@ -36,9 +36,15 @@ function unpack (t, i)
   end
 end
 
+function printData(data)
+  for k, v in pairs(output) do
+    print(k .. ": " .. v)
+  end
+end
 -- wait until a command exists, grab it, execute it, and send result back
 function executeCommand()
   local data = connection.read();
+  print("Received command with data: "..data)
   local result = commandMap[data['name']](unpack(data['parameters']));
   connection.write({['command result']={data['name'], result}});
   connection.write({['power level']=computer.energy()/computer.maxEnergy()});

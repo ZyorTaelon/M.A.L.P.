@@ -16,6 +16,7 @@ local M = {};
 function M.read()
   -- reads delimited by newlines
   local _, _, from, port, _, message = event.pull("modem_message")
+  print("received message from server: " .. message)
   return JSON:decode(message);
 end
 
