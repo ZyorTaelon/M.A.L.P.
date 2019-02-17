@@ -4,9 +4,9 @@ local tunnel = require("tunnel")
 
 local M = {};
 
-function M.turnLeftl()
-  print("sending tunrleft command...")
-  tunnel.write({["command"]="turnLeftl"});
+function M.turnLeft()
+  print("sending turnLeft command...")
+  tunnel.write({["command"]="turnLeft"});
 end
 
 return M;
