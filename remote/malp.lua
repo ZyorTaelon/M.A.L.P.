@@ -1,5 +1,7 @@
 local component = require("component")
 local robot = require("robot")
+local compr = component.robot
+local sides = require("sides")
 local tunnel = component.tunnel;
 local event = require("event")
 local thread = require("thread")
@@ -22,6 +24,22 @@ function moveDown()
   return robot.down()
 end
 
+function moveForward()
+  return robot.forward()
+end
+
+function moveBack()
+  return robot.back()
+end
+
+function moveLeft()
+  return compr.move(sides.left)
+end
+
+function moveRight()
+  return compr.move(sides.left)
+end
+
 function executeCommand()
   local data = connection.read();
   print("received command: " .. data["command"])
@@ -34,6 +52,14 @@ function executeCommand()
     return moveUp()
   elseif cmd == "moveDown" then
     return moveDown()
+  elseif cmd == "moveForward" then
+    return moveForward()
+  elseif cmd == "moveBack" then
+    return moveBack()
+  elseif cmd == "moveLeft" then
+    return moveLeft()
+  elseif cmd == "moveRight" then
+    return moveRight()
   end
 --  connection.write({['command result']={data['name'], result}});
 --  connection.write({['power level']=computer.energy()/computer.maxEnergy()});

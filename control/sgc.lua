@@ -26,13 +26,13 @@ function myEventHandlers.key_up(adress, char, code, playerName)
   if (char == char_space) then
     running = false
   elseif (char == char_w) then
-    print("w")
+    movement.moveForward();
   elseif (char == char_a) then
-    print("a")
+    movement.moveLeft()
   elseif (char == char_s) then
-    print("s")
+    movement.moveBack()
   elseif (char == char_d) then
-    print("d")
+    movement.moveRight()
   elseif (char == char_j) then
     movement.turnLeft()
   elseif (char == char_l) then
